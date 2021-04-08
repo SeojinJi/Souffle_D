@@ -1,0 +1,55 @@
+#####first#####
+
+n = int(input())
+move = list(input().split())
+present = [1, 1]
+
+for i in range(len(move)):  # L,R,U,D를 모두 따로 계산
+    if move[i] == 'R': 
+        if present[1] +1 > n : # R은 n보다 클 때만 밖으로 벗어나니까
+            pass
+        else :
+            present[1] += 1
+    if move[i] == 'L':
+        if present[1] - 1 < 1:
+            pass
+        else:
+            present[1] -= 1
+    if move[i] == 'U':
+        if present[0] -1 <1:
+            pass
+        else :
+            present[0] -=1
+    if move[i] =='D':
+        if present[0] +1 > n:
+            pass
+        else:
+            present[0] +=1
+
+print(present[0], present[1])
+
+# 해당 코딩은 if문이 너무 난잡하게 여러번 겹쳐 있음
+
+
+#####second#####모범답안#####
+
+n = int(input())
+x , y = 1,1 # list일 필요 없으니까
+plans = input().split() #list 지정 안해도, input().split()이면 list라 할 수 있음
+
+dx = [0,0,-1,1]
+dy = [-1, 1, 0, 0]
+move_types = ['L','R','U','D']
+
+for plan in plans:
+    for i in range(len(move_types)): # move_types 중 일치하는 것을 찾기 위함
+        if plan == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    if nx < 1 or nx > n or ny < 1 or ny >n : # 한 번에 지정 가능
+        continue
+    x, y = nx, ny # 이후 값이 넘지 않을 경우에만 x,y에 대입
+    
+print(x,y)
+
+
