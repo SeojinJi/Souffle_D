@@ -1,0 +1,36 @@
+#########first###########
+import numpy as np
+
+n,m = map(int, input().split()) # 두 수를 받아들인다
+M = np.zeros(n) # 0으로 이루어진 list 추출
+for i in range(n):
+    a = list(map(int,input().split())) # list 생성
+    M[i] = min(a) # 그 list에 받아들인 수 중 가장 작은 수 입력
+
+maximum = max(M) # 그 중 가장 큰 값 추출
+print(maximum)
+
+
+#######second########
+n,m = map(int, input().split())
+result = 0
+for i in range(n):
+    a = list(map(int, input().split()))
+    min_result = min(a)
+    result = max(result, min_result)
+
+print(result)
+
+
+######third#######
+n,m = map(int, input().split())
+result = 0
+
+for i in range(n):
+    a = list(map(int, input().split()))
+    min_value = 10001
+    for i in a :
+        min_value = min(min_value, i)
+    result = max(result, min_value)
+
+print(result)

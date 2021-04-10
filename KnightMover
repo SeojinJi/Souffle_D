@@ -1,0 +1,55 @@
+######first######
+
+current = input()
+y = int(current[1])
+position = ['a','b','c','d','e','f','g','h'] # ord라는 함수를 몰랐기 때문에 이렇게 길게 늘려서 쓸 수 밖에 없었음
+
+for i in range(len(position)):
+    if current[0] == position[i]:
+        x = i+1
+
+dx1 = [-1,1] # step으로 나누지 못하고, 하나씩 cross로 불러오는 방향 선택
+dx2 = [-2,2]
+dy1 = [-1,1]
+dy2 = [-2,2]
+count = 0
+
+for i in range(2):
+    for j in range(2):
+        dx = x + dx1[i] # x가 한 칸만 움직이면
+        dy = y + dy2[j] # y는 두 칸을 움직일 수 있음
+        if dx < 1 or dx > 8 or dy < 1 or dy > 8 : # 이 수를 넘어서면 pass
+            pass
+        else:
+            count += 1
+
+for i in range(2):
+    for j in range(2):
+        dx = x + dx2[i]
+        dy = y+ dy1[j]
+        if dx < 1 or dx > 8 or dy < 1 or dy > 8 :
+            pass
+        else:
+            count += 1
+
+print(count)
+
+
+###### second ####### 모범답안 ######
+
+input_data = input()
+row = int(input_data[1])
+col = int(ord(input_data[0])) - int(ord('a')) + 1 # ord (아스키 코드값 꺼내기)
+
+steps = [(-2,-1),(-2,1),(2,-1),(2,1),(-1,2),(-1,-2),(1,-2),(1,2)] # step을 나열하는 방법
+count = 0
+
+for step in steps:
+    next_col = col + step[0]
+    next_row = row +step[1]
+    if next_col < 1 or next_col > 8 or next_row < 1 or next_row > 8:
+        continue
+    else:
+        count += 1
+        
+print(count)

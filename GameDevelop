@@ -1,0 +1,46 @@
+n,m = map(int, input().split())
+p,q,d = map(int, input().split())
+
+position = [[0]*m for _ in range(n)] # 2차원 배열을 만드는 방법. 0으로 전부 초기화
+position[p][q] = 1 # 현재 위치는 방문했다는 걸로 1 표시
+
+array = [] # 위에 position은 방문했다는 표시를 위한 배열, array는 맵에 대한 정보를 받기 위한 배열
+for i in range(n):
+    array.append(list(map(int, input().split())))
+
+da = [-1,0,1,0]
+db = [0,1,0,-1]
+
+def turn_left(): # 왼쪽으로 돌아야 하므로. 0,1,2,3 은 각각 북,동,남,서
+    global d
+    d -= 1
+    if d == -1:
+        d =3
+
+count = 1 # 방문한 칸 수를 세야 하므로
+turn_time = 0 # 네 방향을 모두 돌았을 경우에는 바라보는 방향을 유지하고 한칸 뒤로 돌아가야 하기 때문
+
+while True :
+    turn_left() # 우선 왼쪽으로 회전
+    np = p + da[d]
+    nq = q + db[d]
+    if position[np][nq] == 0 and array[np][nq] == 0: # 방문한 적이 없고, 육지일 때
+        position[np][nq] = 1 # 방문했다는 표시
+        p = np
+        q = nq
+        count += 1
+        turn_time = 0
+        continue #다시 맨 처음으로
+    else :
+        turn_time += 1 # 한 번 돌았다는 표시
+    if turn_time == 4: # 동서남북을 다 돌았을 때, 만족되는 곳이 없다면
+        np = p - da[d] # 방향 유지한 채 뒤로 후진
+        nq = q - db[d] # 방향 유지한 채 뒤로 후진
+        if array[np][nq] == 0 : # 그 곳이 육지라면
+            p = np 
+            q = nq
+        else : # 그 곳이 바다라면
+            break
+        turn_time = 0
+
+print(count)

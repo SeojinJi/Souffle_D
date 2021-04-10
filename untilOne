@@ -1,0 +1,34 @@
+######first###### This is best I think
+n, k = map(int, input().split())
+count = 0
+
+while True :
+    if n == 1 :  # n이 1이면 반복문 탈출
+        break
+    else : 
+        if n % k == 0: # n이 k로 나눠지면
+            n = n // k # 나누기
+            count += 1
+        else : # 안 나눠지면 
+            n -= 1 # 빼기
+            count += 1
+
+print(count)
+
+
+######second#######
+n,k = map(int, input().split())
+count = 0
+
+while n >= k:
+    while n % k != 0:
+        n -= 1
+        count +=1
+    n //= k
+    count+=1
+
+while n > 1:
+    n -= 1
+    count += 1
+    
+print(count)

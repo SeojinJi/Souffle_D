@@ -1,0 +1,28 @@
+#####first#####
+
+n = int(input())
+
+count = 0
+
+for h in range(n+1):
+    for m in range(60):
+        for s in range(60):
+            if h % 10 == 3 or m % 10 == 3 or s % 10 == 3 or m // 10 == 3 or s // 10 == 3: # 3이 나올 수 있는 모든 조건을 찾아낸 것, 실수가 나오기 쉬움
+                count += 1
+                
+
+print(count)
+
+
+#####second#####
+
+n = int(input())
+count = 0
+
+for h in range(n+1):
+    for m in range(60):
+        for s in range(60):
+            if '3' in str(h) + str(m) + str(s):
+                count += 1
+
+print(count)
